@@ -1,0 +1,65 @@
+/* Fuentes e Identidad */
+.font-creepster { font-family: 'Creepster', cursive; }
+.font-mono-tech { font-family: 'Share Tech Mono', monospace; }
+
+/* Resplandor de Neón Rojo */
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(225, 29, 72, 0.8), 0 0 20px rgba(225, 29, 72, 0.5);
+}
+
+/* Efecto de Rayas horizontales de Botones (Estilo de la imagen) */
+.btn-slashr-red {
+  background: repeating-linear-gradient(
+    0deg,
+    #9f1239,
+    #9f1239 2px,
+    #e11d48 2px,
+    #e11d48 4px
+  );
+  border: 1px solid rgba(244, 63, 94, 0.6);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-slashr-red:hover {
+  background: repeating-linear-gradient(
+    0deg,
+    #be123c,
+    #be123c 2px,
+    #f43f5e 2px,
+    #f43f5e 4px
+  );
+}
+
+.btn-slashr-dark {
+  background: repeating-linear-gradient(
+    0deg,
+    #0f172a,
+    #0f172a 2px,
+    #1e293b 2px,
+    #1e293b 4px
+  );
+  border: 1px solid rgba(100, 116, 139, 0.4);
+}
+
+.btn-slashr-dark:hover {
+  border-color: rgba(225, 29, 72, 0.5);
+}
+
+/* Superposición Retro CRT Scanlines */
+.crt-lines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.3) 50%
+  );
+  background-size: 100% 4px;
+}
+
+/* Animaciones */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
