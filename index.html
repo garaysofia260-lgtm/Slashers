@@ -2,210 +2,158 @@
 <html lang="es" class="h-full">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Slashr - Citas Slasher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SLASHR - Encuentra Tu Alma Macabra</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@300;400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-grid-pattern min-h-full flex flex-col justify-between selection:bg-rose-600 selection:text-white touch-manipulation">
+<body class="bg-[#050106] min-h-screen text-white flex flex-col justify-between selection:bg-rose-600 selection:text-white relative overflow-x-hidden">
 
-  <!-- CAPA CRT DE EFECTO RETRO -->
-  <div class="fixed inset-0 crt-overlay z-50 pointer-events-none"></div>
+  <!-- EFECTO RETRO CRT -->
+  <div class="fixed inset-0 crt-lines pointer-events-none z-50"></div>
 
-  <!-- 1. PANTALLA DE CARGA MOBILE (SPLASH SCREEN) -->
-  <div id="splashScreen" class="fixed inset-0 bg-[#080309] z-40 flex flex-col items-center justify-between p-6 text-center select-none">
-    <div class="w-full flex justify-end">
-      <span class="text-[10px] font-mono-tech text-rose-500/60 border border-rose-900/50 px-2 py-0.5 rounded-full">v2.6 MOBILE</span>
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
+  <div id="splashScreen" class="fixed inset-0 bg-[#050106] z-40 flex flex-col items-center justify-center p-6 text-center select-none transition-opacity duration-500">
+    <div class="relative mb-6">
+      <div class="w-24 h-24 rounded-full border border-rose-600/40 bg-rose-950/20 flex items-center justify-center shadow-[0_0_30px_rgba(225,29,72,0.5)]">
+        <span class="text-4xl text-rose-500 animate-pulse">💔</span>
+      </div>
+    </div>
+    <h1 class="font-creepster text-5xl text-rose-600 text-glow-red tracking-wider mb-2">SLASHR</h1>
+    <p class="font-mono-tech text-xs text-rose-400/70 tracking-widest uppercase mb-6">CARGANDO ALMAS CERCANAS...</p>
+    <div class="w-64 bg-zinc-900 border border-zinc-800 rounded-full h-2 p-0.5 overflow-hidden">
+      <div id="progressBar" class="bg-rose-600 h-full rounded-full w-0 transition-all duration-300"></div>
+    </div>
+  </div>
+
+  <!-- HEADER RETRO -->
+  <header class="w-full max-w-md mx-auto px-4 py-4 flex items-center justify-between z-20">
+    <button id="soundToggle" onclick="toggleSound()" class="w-10 h-10 rounded-full border border-rose-900/60 bg-zinc-950/80 flex items-center justify-center text-rose-500 hover:scale-105 active:scale-95 transition-all shadow-[0_0_10px_rgba(225,29,72,0.2)]">
+      <span id="soundIcon" class="text-sm">🔊</span>
+    </button>
+
+    <div class="flex items-center gap-2 font-creepster text-2xl text-rose-600 text-glow-red tracking-widest">
+      <span>☠</span>
+      <span>SLASHR</span>
     </div>
 
-    <!-- LOGO ANIMADO -->
-    <div class="flex flex-col items-center my-auto">
-      <div class="relative mb-6 cursor-pointer active:scale-95 transition-transform" onclick="playPulseSound()">
-        <div class="absolute -inset-4 bg-gradient-to-r from-rose-600 to-purple-600 rounded-full blur-xl opacity-60 animate-pulse"></div>
-        <div class="relative w-28 h-28 bg-zinc-950 rounded-full border-2 border-rose-500/50 flex items-center justify-center shadow-2xl">
-          <svg class="w-16 h-16 text-rose-500 drop-shadow-[0_0_12px_rgba(244,63,94,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3 3-9 9-3-1 1-3 8-8z" class="text-rose-400" />
-          </svg>
-        </div>
-      </div>
-
-      <h1 class="font-creepster text-6xl text-rose-500 text-glow-red tracking-wider mb-1">SLASHR</h1>
-      <p class="text-xs font-mono-tech text-rose-400/80 tracking-widest uppercase">MATCH & SURVIVE</p>
-    </div>
-
-    <!-- BARRA Y ESTADO -->
-    <div class="w-full max-w-xs space-y-3 pb-4">
-      <div class="w-full bg-zinc-900 border border-zinc-800 rounded-full h-2.5 p-0.5 overflow-hidden shadow-inner">
-        <div id="progressBar" class="bg-gradient-to-r from-rose-600 via-purple-600 to-rose-500 h-full rounded-full w-0 transition-all duration-300 animate-pulse-bar"></div>
-      </div>
-
-      <p id="loadingText" class="font-mono-tech text-xs text-zinc-400 truncate">Iniciando protocolo...</p>
-
-      <button onclick="finishLoading()" class="text-[11px] font-mono-tech text-zinc-600 active:text-rose-400 transition-colors uppercase tracking-widest underline decoration-rose-900 pt-2 block w-full py-2">
-        [SALTAR INTRO]
+    <div class="flex items-center gap-2">
+      <button onclick="openModal('loginModal')" class="w-10 h-10 rounded-full border border-zinc-800 bg-zinc-950/80 flex items-center justify-center text-zinc-400 hover:text-white hover:border-rose-500/50 transition-all">
+        <span class="text-xs">🚪</span>
+      </button>
+      <button onclick="openModal('registerModal')" class="w-10 h-10 rounded-full border border-purple-900/60 bg-purple-950/40 flex items-center justify-center text-purple-400 hover:scale-105 transition-all shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+        <span class="text-xs">👻</span>
       </button>
     </div>
-  </div>
+  </header>
 
-  <!-- 2. PANTALLA PRINCIPAL MOBILE -->
-  <div id="landingScreen" class="min-h-screen flex flex-col justify-between relative z-10 opacity-0 transition-opacity duration-700">
+  <!-- CONTENIDO PRINCIPAL (HERO / INICIO) -->
+  <main class="w-full max-w-md mx-auto px-6 py-4 flex-1 flex flex-col items-center justify-center text-center z-10">
     
-    <!-- NAVBAR MOBILE -->
-    <header class="border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur-md sticky top-0 z-30 px-4 py-3">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-rose-950/60 border border-rose-500/40 rounded-lg flex items-center justify-center text-rose-500 font-creepster text-xl shadow-[0_0_8px_rgba(244,63,94,0.3)]">
-            S
-          </div>
-          <span class="font-creepster text-2xl text-rose-500 text-glow-red tracking-wider">SLASHR</span>
-        </div>
-
-        <button onclick="openModal('loginModal')" class="px-3.5 py-1.5 text-xs font-semibold text-rose-400 border border-rose-900/60 bg-rose-950/30 rounded-full active:scale-95 transition-all">
-          Entrar
-        </button>
+    <!-- CORAZÓN ROTO BRILLANTE -->
+    <div class="relative mb-6">
+      <div class="absolute -inset-2 bg-rose-600/30 rounded-full blur-xl"></div>
+      <div class="relative w-24 h-24 rounded-full border-2 border-rose-600/80 bg-zinc-950 flex items-center justify-center shadow-[0_0_25px_rgba(225,29,72,0.6)]">
+        <span class="text-4xl text-rose-500 drop-shadow-[0_0_10px_rgba(244,63,94,0.8)]">💔</span>
       </div>
-    </header>
+    </div>
 
-    <!-- HERO SECTION MOBILE -->
-    <main class="px-5 py-8 flex-1 flex flex-col items-center justify-center text-center">
-      
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/60 border border-rose-800/50 text-rose-400 text-[11px] font-mono-tech mb-6">
-        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-        +10K SLASHERS ONLINE
-      </div>
+    <!-- TÍTULO PRINCIPAL -->
+    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 uppercase leading-tight">
+      <span class="block text-zinc-200 tracking-wider font-extrabold font-mono-tech border-b-2 border-transparent">ENCUENTRA TU</span>
+      <span class="block font-creepster text-4xl sm:text-5xl text-rose-600 text-glow-red tracking-widest mt-1">ALMA MACABRA</span>
+    </h1>
 
-      <h1 class="text-3xl font-extrabold tracking-tight mb-4 leading-tight">
-        Amor sangriento antes de <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-400 text-glow-red">medianoche</span>
-      </h1>
+    <!-- SUBTÍTULO -->
+    <p class="text-zinc-400 text-xs sm:text-sm max-w-xs mb-8 leading-relaxed font-light">
+      ¿Cansado de citas normales? Conecta con Jason, Freddy, Ghostface y los asesinos más sangrientos cerca de tu ventana.
+    </p>
 
-      <p class="text-zinc-400 text-sm mb-8 font-light leading-relaxed max-w-xs">
-        Conecta con los asesinos slasher más temidos o encuentra la compañía perfecta para el apocalipsis.
-      </p>
+    <!-- BADGES RECTANGULARES -->
+    <div class="flex items-center justify-center gap-2 mb-10 w-full flex-wrap">
+      <span class="px-3 py-1.5 rounded-full border border-rose-900/60 bg-rose-950/30 text-rose-400 text-[11px] font-mono-tech flex items-center gap-1">
+        ⚡ Swipe Sangriento
+      </span>
+      <span class="px-3 py-1.5 rounded-full border border-purple-900/60 bg-purple-950/30 text-purple-300 text-[11px] font-mono-tech flex items-center gap-1">
+        🎰 Matches Reales
+      </span>
+      <span class="px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-[11px] font-mono-tech flex items-center gap-1">
+        💀 +18 Horror
+      </span>
+    </div>
 
-      <!-- BOTONES DE ACCIÓN PRINCIPALES -->
-      <div class="w-full space-y-3 max-w-xs mb-10">
-        <button onclick="openModal('registerModal')" class="w-full py-3.5 px-6 text-sm font-bold text-white bg-rose-600 active:bg-rose-700 rounded-xl shadow-[0_0_20px_rgba(225,29,72,0.5)] transition-transform active:scale-95 flex items-center justify-center gap-2">
-          <span>Crear Cuenta Gratis</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </button>
-        
-        <button onclick="openModal('loginModal')" class="w-full py-3 px-6 text-sm font-semibold text-zinc-300 bg-zinc-900/80 active:bg-zinc-800 border border-zinc-800 rounded-xl transition-transform active:scale-95">
-          Ya tengo cuenta
-        </button>
-      </div>
+    <!-- BOTONES DE ACCIÓN PRINCIPALES -->
+    <div class="w-full space-y-3.5 max-w-xs">
+      <button onclick="openModal('registerModal')" class="btn-slashr-red w-full py-4 px-6 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95 shadow-[0_0_20px_rgba(225,29,72,0.4)]">
+        <span>👤+</span>
+        <span>CREAR CUENTA SANGRIENTA</span>
+      </button>
 
-      <!-- TARJETAS DESTACADAS EN TARRUS/DESLIZABLES -->
-      <div class="w-full space-y-3 text-left">
-        <div class="p-4 bg-zinc-950/80 border border-zinc-800/80 rounded-xl backdrop-blur-sm">
-          <div class="flex items-center gap-3">
-            <span class="text-xl">🔪</span>
-            <div>
-              <h3 class="text-xs font-bold text-white">Filtra por Arma</h3>
-              <p class="text-[11px] text-zinc-400">Machete, motosierra o garra.</p>
-            </div>
-          </div>
-        </div>
+      <button onclick="openModal('loginModal')" class="btn-slashr-dark w-full py-4 px-6 rounded-xl font-mono-tech text-xs font-bold text-zinc-300 uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95">
+        <span>🔑</span>
+        <span>INICIAR SESIÓN</span>
+      </button>
+    </div>
 
-        <div class="p-4 bg-zinc-950/80 border border-zinc-800/80 rounded-xl backdrop-blur-sm">
-          <div class="flex items-center gap-3">
-            <span class="text-xl">🩸</span>
-            <div>
-              <h3 class="text-xs font-bold text-white">Algoritmo de Supervivencia</h3>
-              <p class="text-[11px] text-zinc-400">Match con tu acompañante ideal.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  </main>
 
-    </main>
+  <!-- NAVEGACIÓN INFERIOR DE ICONOS SUTILES -->
+  <footer class="w-full max-w-md mx-auto px-6 py-6 flex items-center justify-center gap-8 text-zinc-700 z-20">
+    <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">💀</span>
+    <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">⚡</span>
+    <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">💔</span>
+  </footer>
 
-    <!-- FOOTER MOBILE -->
-    <footer class="border-t border-zinc-900 bg-zinc-950/90 py-4 px-4 text-center text-[10px] font-mono-tech text-zinc-600">
-      <p>© 2026 SLASHR MOBILE • NO MIRES ATRÁS</p>
-    </footer>
-
-  </div>
-
-  <!-- 3. MODAL MOBILE DE INICIO DE SESIÓN (Bottom Sheet) -->
-  <div id="loginModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center hidden">
-    <div class="bg-zinc-950 border-t sm:border border-rose-500/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
-      <!-- Indicador táctil superior -->
+  <!-- MODAL DE INICIAR SESIÓN -->
+  <div id="loginModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center hidden">
+    <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
       <div class="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 sm:hidden"></div>
-      
-      <div class="flex justify-between items-center mb-5">
-        <h2 class="font-creepster text-3xl text-rose-500 text-glow-red">INICIAR SESIÓN</h2>
-        <button onclick="closeModal('loginModal')" class="text-zinc-500 active:text-white p-2">✕</button>
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="font-creepster text-3xl text-rose-600 text-glow-red">INICIAR SESIÓN</h2>
+        <button onclick="closeModal('loginModal')" class="text-zinc-500 hover:text-white">✕</button>
       </div>
-
-      <form onsubmit="handleAuthSubmit(event, 'Inicio de sesión')" class="space-y-3.5">
+      <form onsubmit="handleAuth(event, 'Inicio de sesión')" class="space-y-4">
         <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1">CORREO / ALIAS</label>
-          <input type="text" required placeholder="tu_alias@slasmail.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-500">
+          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Correo / Alias</label>
+          <input type="text" required placeholder="tu_victima@slasmail.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
         </div>
-
         <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1">CONTRASEÑA</label>
-          <input type="password" required placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-500">
+          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Contraseña</label>
+          <input type="password" required placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
         </div>
-
-        <button type="submit" class="w-full py-3.5 text-sm font-bold text-white bg-rose-600 active:bg-rose-700 rounded-xl shadow-lg transition-transform active:scale-95 mt-2">
+        <button type="submit" class="btn-slashr-red w-full py-3.5 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider">
           ENTRAR CON SANGRE
         </button>
       </form>
-
-      <div class="mt-5 text-center text-xs text-zinc-500 pb-2">
-        ¿Sin cuenta? 
-        <button onclick="switchModal('loginModal', 'registerModal')" class="text-rose-400 font-semibold ml-1">Regístrate</button>
-      </div>
     </div>
   </div>
 
-  <!-- 4. MODAL MOBILE DE REGISTRO (Bottom Sheet) -->
-  <div id="registerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center hidden">
-    <div class="bg-zinc-950 border-t sm:border border-rose-500/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto">
+  <!-- MODAL DE REGISTRO -->
+  <div id="registerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center hidden">
+    <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
       <div class="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 sm:hidden"></div>
-
-      <div class="flex justify-between items-center mb-5">
-        <h2 class="font-creepster text-3xl text-rose-500 text-glow-red">REGISTRO</h2>
-        <button onclick="closeModal('registerModal')" class="text-zinc-500 active:text-white p-2">✕</button>
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="font-creepster text-3xl text-rose-600 text-glow-red">REGISTRO</h2>
+        <button onclick="closeModal('registerModal')" class="text-zinc-500 hover:text-white">✕</button>
       </div>
-
-      <form onsubmit="handleAuthSubmit(event, 'Registro')" class="space-y-3.5">
+      <form onsubmit="handleAuth(event, 'Registro')" class="space-y-4">
         <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1">ALIAS EN EL SLASHER</label>
-          <input type="text" required placeholder="Ej: Chica_Final_99" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-500">
+          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Nombre o Alias</label>
+          <input type="text" required placeholder="Ej: Chica_Final_99" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
         </div>
-
         <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1">ROL EN EL SLASHER</label>
-          <select class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-500">
-            <option value="victima">Víctima Potencial</option>
-            <option value="asesino">Asesino Slasher</option>
-            <option value="curioso">Superviviente</option>
-          </select>
+          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Correo Electrónico</label>
+          <input type="email" required placeholder="tu@correo.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
         </div>
-
         <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1">CORREO</label>
-          <input type="email" required placeholder="tu@correo.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-500">
+          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Contraseña</label>
+          <input type="password" required placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
         </div>
-
-        <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1">CONTRASEÑA</label>
-          <input type="password" required placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rose-500">
-        </div>
-
-        <button type="submit" class="w-full py-3.5 text-sm font-bold text-white bg-gradient-to-r from-rose-600 to-purple-600 active:from-rose-700 active:to-purple-700 rounded-xl shadow-lg transition-transform active:scale-95 mt-2">
+        <button type="submit" class="btn-slashr-red w-full py-3.5 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider">
           UNIRSE A LA CACERÍA
         </button>
       </form>
-
-      <div class="mt-5 text-center text-xs text-zinc-500 pb-2">
-        ¿Ya tienes cuenta? 
-        <button onclick="switchModal('registerModal', 'loginModal')" class="text-rose-400 font-semibold ml-1">Inicia sesión</button>
-      </div>
     </div>
   </div>
 
