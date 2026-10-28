@@ -13,35 +13,24 @@
   <!-- EFECTO RETRO CRT -->
   <div class="fixed inset-0 crt-lines pointer-events-none z-50"></div>
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN CON INTERACCIÓN DIRECTA ONCLICK) -->
-  <div id="splashScreen" onclick="forceHideSplash()" class="fixed inset-0 bg-[#050106] z-40 flex flex-col items-center justify-center p-6 text-center select-none cursor-pointer">
+  <!-- PANTALLA DE CARGA RÁPIDA (SE OCULTA AL Tocar O Al Cargar) -->
+  <div id="splashScreen" onclick="hideSplash()" class="fixed inset-0 bg-[#050106] z-40 flex flex-col items-center justify-center p-6 text-center select-none cursor-pointer">
     <div class="relative mb-6">
       <div class="w-24 h-24 rounded-full border border-rose-600/50 bg-zinc-950 flex items-center justify-center shadow-[0_0_35px_rgba(225,29,72,0.6)]">
         <span class="text-4xl text-rose-500 animate-pulse">💔</span>
       </div>
     </div>
-
-    <!-- TÍTULO HOOKED -->
     <div class="flex items-center justify-center mb-1">
       <h1 class="font-creepster text-6xl text-rose-600 text-glow-red tracking-wider">HOOKED</h1>
     </div>
-
-    <!-- SUBTÍTULO -->
     <p class="font-mono-tech text-xs text-rose-400/90 tracking-widest uppercase mb-6 drop-shadow">
       CITAS DE PESADILLA & EMPAREJAMIENTO MORTAL
     </p>
-
-    <!-- BARRA DE CARGA Y TEXTO DINÁMICO -->
     <div class="w-64 bg-zinc-900 border border-zinc-800 rounded-full h-2.5 p-0.5 overflow-hidden shadow-inner mb-3">
-      <div id="progressBar" class="bg-gradient-to-r from-rose-700 to-rose-500 h-full rounded-full w-0 transition-all duration-300"></div>
+      <div id="progressBar" class="bg-gradient-to-r from-rose-700 to-rose-500 h-full rounded-full w-full transition-all duration-300"></div>
     </div>
-    
-    <p id="loadingStatus" class="font-mono-tech text-[11px] text-zinc-500 uppercase tracking-widest">
-      Afilando el gancho...
-    </p>
-
-    <p class="font-mono-tech text-[10px] text-zinc-600 mt-4 underline decoration-zinc-800 uppercase tracking-widest">
-      [Toca la pantalla para saltar]
+    <p class="font-mono-tech text-[11px] text-zinc-400 uppercase tracking-widest animate-pulse">
+      [ Toca en cualquier lugar para entrar ]
     </p>
   </div>
 
@@ -50,11 +39,9 @@
     <button id="soundToggle" onclick="toggleSound()" class="w-10 h-10 rounded-full border border-rose-900/60 bg-zinc-950/80 flex items-center justify-center text-rose-500 hover:scale-105 active:scale-95 transition-all shadow-[0_0_10px_rgba(225,29,72,0.2)]">
       <span id="soundIcon" class="text-sm">🔊</span>
     </button>
-
     <div class="flex items-center font-creepster text-2xl text-rose-600 text-glow-red tracking-widest">
       <span>HOOKED</span>
     </div>
-
     <div class="flex items-center gap-2">
       <button onclick="openModal('loginModal')" class="w-10 h-10 rounded-full border border-zinc-800 bg-zinc-950/80 flex items-center justify-center text-zinc-400 hover:text-white hover:border-rose-500/50 transition-all">
         <span class="text-xs">🚪</span>
@@ -65,7 +52,7 @@
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL (HERO) -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="w-full max-w-md mx-auto px-6 py-4 flex-1 flex flex-col items-center justify-center text-center z-10">
     <div class="relative mb-6">
       <div class="absolute -inset-2 bg-rose-600/30 rounded-full blur-xl"></div>
@@ -73,28 +60,23 @@
         <span class="text-4xl text-rose-500 drop-shadow-[0_0_10px_rgba(244,63,94,0.8)]">💔</span>
       </div>
     </div>
-
     <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 uppercase leading-tight">
       <span class="block text-zinc-200 tracking-wider font-extrabold font-mono-tech">ENCUENTRA TU</span>
       <span class="block font-creepster text-4xl sm:text-5xl text-rose-600 text-glow-red tracking-widest mt-1">ALMA MACABRA</span>
     </h1>
-
     <p class="text-zinc-400 text-xs sm:text-sm max-w-xs mb-8 leading-relaxed font-light">
       ¿Cansado de citas normales? Queda enganchado con Jason, Freddy, Ghostface y los asesinos más sangrientos cerca de tu ventana.
     </p>
-
     <div class="flex items-center justify-center gap-2 mb-10 w-full flex-wrap">
       <span class="px-3 py-1.5 rounded-full border border-rose-900/60 bg-rose-950/30 text-rose-400 text-[11px] font-mono-tech">⚡ Swipe Sangriento</span>
       <span class="px-3 py-1.5 rounded-full border border-purple-900/60 bg-purple-950/30 text-purple-300 text-[11px] font-mono-tech">🎰 Matches Reales</span>
       <span class="px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-[11px] font-mono-tech">💀 +18 Horror</span>
     </div>
-
     <div class="w-full space-y-3.5 max-w-xs">
       <button onclick="openModal('registerModal')" class="btn-slashr-red w-full py-4 px-6 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95 shadow-[0_0_20px_rgba(225,29,72,0.4)]">
         <span>👤+</span>
         <span>CREAR CUENTA SANGRIENTA</span>
       </button>
-
       <button onclick="openModal('loginModal')" class="btn-slashr-dark w-full py-4 px-6 rounded-xl font-mono-tech text-xs font-bold text-zinc-300 uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95">
         <span>🔑</span>
         <span>INICIAR SESIÓN</span>
