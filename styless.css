@@ -1,13 +1,10 @@
-/* Fuentes e Identidad */
 .font-creepster { font-family: 'Creepster', cursive; }
 .font-mono-tech { font-family: 'Share Tech Mono', monospace; }
 
-/* Resplandor de Neón Rojo */
 .text-glow-red {
-  text-shadow: 0 0 10px rgba(225, 29, 72, 0.8), 0 0 20px rgba(225, 29, 72, 0.5);
+  text-shadow: 0 0 12px rgba(225, 29, 72, 0.9), 0 0 25px rgba(225, 29, 72, 0.6);
 }
 
-/* Efecto de Rayas horizontales de Botones (Estilo de la imagen) */
 .btn-slashr-red {
   background: repeating-linear-gradient(
     0deg,
@@ -45,7 +42,6 @@
   border-color: rgba(225, 29, 72, 0.5);
 }
 
-/* Superposición Retro CRT Scanlines */
 .crt-lines {
   background: linear-gradient(
     rgba(18, 16, 16, 0) 50%, 
@@ -54,7 +50,6 @@
   background-size: 100% 4px;
 }
 
-/* Animaciones */
 @keyframes slideUp {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
