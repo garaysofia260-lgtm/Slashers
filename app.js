@@ -1,52 +1,16 @@
-// Función global indestructible para forzar ocultar la pantalla de carga
-function forceHideSplash() {
+function hideSplash() {
   const splash = document.getElementById('splashScreen');
   if (splash) {
     splash.style.transition = 'opacity 0.4s ease';
     splash.style.opacity = '0';
     setTimeout(() => {
       splash.style.display = 'none';
-      splash.remove(); // Eliminado del DOM para asegurar que no bloquee los clics del inicio
+      splash.remove();
     }, 400);
   }
 }
 
-// Inicializador principal al cargar la página
-window.addEventListener('load', () => {
-  let progress = 0;
-  const progressBar = document.getElementById('progressBar');
-  const loadingStatus = document.getElementById('loadingStatus');
-
-  const statusMessages = [
-    "Afilando el gancho...",
-    "Sintonizando frecuencias de terror...",
-    "Localizando asesinos cercanos...",
-    "Cargando almas de pesadilla..."
-  ];
-
-  const loadingInterval = setInterval(() => {
-    progress += 25;
-    if (progress > 100) progress = 100;
-
-    if (progressBar) progressBar.style.width = progress + '%';
-
-    const msgIndex = Math.min(Math.floor((progress / 100) * statusMessages.length), statusMessages.length - 1);
-    if (loadingStatus) loadingStatus.innerText = statusMessages[msgIndex];
-
-    if (progress >= 100) {
-      clearInterval(loadingInterval);
-      setTimeout(forceHideSplash, 300);
-    }
-  }, 200);
-
-  // Garantía de tiempo máximo (Timeout de respaldo por si falla el intervalo)
-  setTimeout(() => {
-    clearInterval(loadingInterval);
-    forceHideSplash();
-  }, 2500);
-});
-
-// AUDIO AMBIENTAL Y CONTROLES
+// EFECTOS DE AUDIO Y MODALES
 let audioCtx = null;
 let isMuted = true;
 
@@ -79,7 +43,6 @@ function playPulse() {
   }
 }
 
-// CONTROL DE MODALES
 function openModal(modalId) {
   playPulse();
   const modal = document.getElementById(modalId);
