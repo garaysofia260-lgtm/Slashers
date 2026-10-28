@@ -38,7 +38,7 @@
     </button>
   </div>
 
-  <!-- HEADER RETRO LIMPIO (Solo botón de audio y logo central) -->
+  <!-- HEADER RETRO LIMPIO -->
   <header class="w-full max-w-md mx-auto px-4 py-4 flex items-center justify-between z-20">
     <button id="soundToggle" onclick="toggleSound()" class="w-10 h-10 rounded-full border border-rose-900/60 bg-zinc-950/80 flex items-center justify-center text-rose-500 hover:scale-105 active:scale-95 transition-all shadow-[0_0_10px_rgba(225,29,72,0.2)]">
       <span id="soundIcon" class="text-sm">🔊</span>
@@ -46,54 +46,167 @@
     <div class="flex items-center font-creepster text-2xl text-rose-600 text-glow-red tracking-widest">
       <span>HOOKED</span>
     </div>
-    <div class="w-10"></div> <!-- Espaciador invisible para mantener el logo perfectamente centrado -->
+    <div class="w-10"></div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="w-full max-w-md mx-auto px-6 py-4 flex-1 flex flex-col items-center justify-center text-center z-10">
-    <div class="relative mb-6">
-      <div class="absolute -inset-2 bg-rose-600/30 rounded-full blur-xl"></div>
-      <div class="relative w-24 h-24 rounded-full border-2 border-rose-600/80 bg-zinc-950 flex items-center justify-center shadow-[0_0_25px_rgba(225,29,72,0.6)]">
-        <span class="text-4xl text-rose-500 drop-shadow-[0_0_10px_rgba(244,63,94,0.8)]">💔</span>
-      </div>
-    </div>
+  <!-- CONTENIDO PRINCIPAL: FEED SLASHER -->
+  <main class="w-full max-w-md mx-auto px-4 py-2 flex-1 flex flex-col z-10 pb-20">
     
-    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 uppercase leading-tight">
-      <span class="block text-zinc-200 tracking-wider font-extrabold font-mono-tech">ENCUENTRA TU</span>
-      <span class="block font-creepster text-4xl sm:text-5xl text-rose-600 text-glow-red tracking-widest mt-1">ALMA MACABRA</span>
-    </h1>
-    
-    <p class="text-zinc-400 text-xs sm:text-sm max-w-xs mb-8 leading-relaxed font-light">
-      ¿Cansado de citas normales? Queda enganchado con Jason, Freddy, Ghostface y los asesinos más sangrientos cerca de tu ventana.
-    </p>
-    
-    <div class="flex items-center justify-center gap-2 mb-10 w-full flex-wrap">
-      <span class="px-3 py-1.5 rounded-full border border-rose-900/60 bg-rose-950/30 text-rose-400 text-[11px] font-mono-tech">⚡ Swipe Sangriento</span>
-      <span class="px-3 py-1.5 rounded-full border border-purple-900/60 bg-purple-950/30 text-purple-300 text-[11px] font-mono-tech">🎰 Matches Reales</span>
-      <span class="px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-[11px] font-mono-tech">💀 +18 Horror</span>
-    </div>
-    
-    <div class="w-full space-y-3.5 max-w-xs">
-      <button onclick="openModal('registerModal')" class="btn-slashr-red w-full py-4 px-6 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95 shadow-[0_0_20px_rgba(225,29,72,0.4)]">
-        <span>👤+</span>
-        <span>CREAR CUENTA SANGRIENTA</span>
-      </button>
-      <button onclick="openModal('loginModal')" class="btn-slashr-dark w-full py-4 px-6 rounded-xl font-mono-tech text-xs font-bold text-zinc-300 uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95">
-        <span>🔑</span>
-        <span>INICIAR SESIÓN</span>
-      </button>
+    <!-- PESTAÑA: FEED SALVAJE -->
+    <div id="feedTab" class="space-y-6">
+
+      <!-- PUBLICACIÓN DE LESTER SINCLAIR -->
+      <article class="bg-zinc-950/90 border border-rose-950/80 rounded-2xl p-4 shadow-[0_0_15px_rgba(225,29,72,0.15)] relative overflow-hidden">
+        <!-- Encabezado de la publicación -->
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <img src="https://i.ibb.co/L5hYy1F/lester-profile.jpg" alt="Lester Sinclair" class="w-11 h-11 rounded-full object-cover border-2 border-rose-600/80 shadow-[0_0_10px_rgba(225,29,72,0.4)]">
+              <span class="absolute -bottom-1 -right-1 bg-rose-600 text-[9px] p-0.5 rounded-full">🔪</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="font-bold text-sm text-zinc-100">Lester Sinclair</h3>
+                <span class="text-rose-500 text-xs">✓</span>
+              </div>
+              <p class="font-mono-tech text-[10px] text-zinc-500">@lester_roadkill_road • Hace 32m</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full border border-rose-900/40 bg-rose-950/30 font-mono-tech text-[10px] text-rose-400">📍 Ambrose, LA</span>
+        </div>
+
+        <!-- Contenido del texto -->
+        <p class="text-xs text-zinc-300 leading-relaxed mb-3">
+          Encontré un zorrillo/zorro atropellado en la carretera y lo disequé... me quedó bastante bonito, ¿verdad? Si a alguna chica de la app le gustan los animales disecados me puede mandar un mensaje... Bo dice que soy un rarito asqueroso y que nadie me va a querer nunca pero yo trato de ser amable... 👉👈
+        </p>
+
+        <!-- Foto del Zorro Disecado de Lester -->
+        <div class="relative rounded-xl overflow-hidden border border-zinc-800 mb-3 bg-zinc-900">
+          <img src="https://i.ibb.co/3mbM6F4/fox-taxidermy.jpg" alt="Zorro disecado rascándose la oreja" class="w-full h-64 object-cover">
+          <div class="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-rose-900/40 flex items-center gap-2">
+            <span class="text-xs">🦊</span>
+            <span class="font-mono-tech text-[10px] text-rose-300 uppercase tracking-wide">Zorro disecado rascándose la oreja (Obra de Lester)</span>
+          </div>
+        </div>
+
+        <!-- Acciones de la publicación -->
+        <div class="flex items-center justify-between pt-2 border-t border-zinc-900 font-mono-tech text-xs">
+          <button onclick="likePost(this)" class="flex items-center gap-1.5 text-zinc-400 hover:text-rose-500 transition-colors">
+            <span>🩸</span>
+            <span class="like-count">2,974</span>
+          </button>
+          <button onclick="openComments('lesterComments')" class="flex items-center gap-1.5 text-zinc-400 hover:text-rose-400 transition-colors">
+            <span>💬</span>
+            <span>3 Respuestas</span>
+          </button>
+          <button class="flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 transition-colors">
+            <span>🗡️</span>
+            <span>Compartir</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- PUBLICACIÓN DE BO SINCLAIR -->
+      <article class="bg-zinc-950/90 border border-rose-950/80 rounded-2xl p-4 shadow-[0_0_15px_rgba(225,29,72,0.15)] relative overflow-hidden">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1509281373149-e957c6296406?w=150&auto=format&fit=crop&q=80" alt="Bo Sinclair" class="w-11 h-11 rounded-full object-cover border-2 border-rose-600/80">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="font-bold text-sm text-zinc-100">Bo Sinclair</h3>
+                <span class="text-rose-500 text-xs">✓</span>
+              </div>
+              <p class="font-mono-tech text-[10px] text-zinc-500">@bo_wax_master • Hace 2h</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full border border-rose-900/40 bg-rose-950/30 font-mono-tech text-[10px] text-rose-400">📍 Taller de Cera</span>
+        </div>
+        <p class="text-xs text-zinc-300 leading-relaxed mb-3">
+          Nuevas esculturas listas para la sala de exhibición principal de Trudy. Si vas a visitar Ambrose no olvides pasar por la estación de servicio. Lester, deja de publicar estupideces y trae la cera.
+        </p>
+        <div class="flex items-center justify-between pt-2 border-t border-zinc-900 font-mono-tech text-xs">
+          <button onclick="likePost(this)" class="flex items-center gap-1.5 text-zinc-400 hover:text-rose-500">
+            <span>🩸</span> <span class="like-count">1,840</span>
+          </button>
+          <button onclick="openComments('boComments')" class="flex items-center gap-1.5 text-zinc-400 hover:text-rose-400">
+            <span>💬</span> <span>1 Respuesta</span>
+          </button>
+          <button class="flex items-center gap-1.5 text-zinc-400"><span>🗡️</span> <span>Compartir</span></button>
+        </div>
+      </article>
+
     </div>
   </main>
 
-  <!-- FOOTER LIMPIO -->
-  <footer class="w-full max-w-md mx-auto px-6 py-6 text-center text-[10px] font-mono-tech text-zinc-600 z-20">
-    <p>© 2026 HOOKED • TODOS LOS DERECHOS RESERVADOS</p>
-  </footer>
+  <!-- MODAL DE COMENTARIOS (LESTER) -->
+  <div id="lesterComments" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center hidden">
+    <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-5 w-full max-w-md shadow-2xl max-h-[80vh] flex flex-col">
+      <div class="flex justify-between items-center mb-4 pb-2 border-b border-zinc-900">
+        <h3 class="font-mono-tech text-xs text-rose-500 uppercase tracking-wider">Comentarios en la publicación</h3>
+        <button onclick="closeModal('lesterComments')" class="text-zinc-500 hover:text-white">✕</button>
+      </div>
+
+      <div class="space-y-3 overflow-y-auto flex-1 pr-1 mb-4 font-mono-tech">
+        <!-- Comentario de Bo -->
+        <div class="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-rose-400">Bo Sinclair (@bo_wax_master)</span>
+            <span class="text-[9px] text-zinc-600">Hace 28m</span>
+          </div>
+          <p class="text-xs text-zinc-300">Borra esto ya mismo imbécil. Das vergüenza ajena. Vuelve a la camioneta a buscar más cera antes de que te rompa la otra oreja.</p>
+        </div>
+
+        <!-- Comentario de Vincent -->
+        <div class="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-zinc-400">Vincent Sinclair (@vincent_wax_artist)</span>
+            <span class="text-[9px] text-zinc-600">Hace 20m</span>
+          </div>
+          <p class="text-xs text-zinc-400 italic">...(silencio y sonido de espátula esculpiendo)...</p>
+        </div>
+
+        <!-- Comentario de Norman Bates -->
+        <div class="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-purple-400">Norman Bates (@mother_bates_motel)</span>
+            <span class="text-[9px] text-zinc-600">Hace 12m</span>
+          </div>
+          <p class="text-xs text-zinc-300">La taxidermia requiere delicadeza y respeto por la forma natural. Aunque la postura es inusual, a mi Madre le pareció curioso.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2 border-t border-zinc-900">
+        <input type="text" placeholder="Escribe un comentario sangriento..." class="flex-1 bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-600 font-mono-tech">
+        <button onclick="addUserComment(this)" class="btn-slashr-red px-4 py-2 rounded-xl text-xs font-mono-tech font-bold">RESPONDER</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN INFERIOR -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-zinc-950/95 border-t border-rose-900/40 py-3 px-6 z-30 backdrop-blur-lg">
+    <div class="max-w-md mx-auto flex items-center justify-around font-mono-tech text-[10px]">
+      <button class="flex flex-col items-center gap-1 text-rose-500">
+        <span class="text-lg">🩸</span>
+        <span>FEED</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-zinc-500 hover:text-rose-400">
+        <span class="text-lg">⚡</span>
+        <span>SWIPE</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-zinc-500 hover:text-rose-400">
+        <span class="text-lg">💬</span>
+        <span>CHATS</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-zinc-500 hover:text-rose-400">
+        <span class="text-lg">💀</span>
+        <span>PERFIL</span>
+      </button>
+    </div>
+  </nav>
 
   <!-- MODAL INICIAR SESIÓN -->
   <div id="loginModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center hidden">
-    <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
-      <div class="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 sm:hidden"></div>
+    <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl">
       <div class="flex justify-between items-center mb-6">
         <h2 class="font-creepster text-3xl text-rose-600 text-glow-red">INICIAR SESIÓN</h2>
         <button onclick="closeModal('loginModal')" class="text-zinc-500 hover:text-white">✕</button>
@@ -109,34 +222,6 @@
         </div>
         <button type="submit" class="btn-slashr-red w-full py-3.5 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider">
           ENTRAR CON SANGRE
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL REGISTRO -->
-  <div id="registerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center hidden">
-    <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
-      <div class="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 sm:hidden"></div>
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="font-creepster text-3xl text-rose-600 text-glow-red">REGISTRO</h2>
-        <button onclick="closeModal('registerModal')" class="text-zinc-500 hover:text-white">✕</button>
-      </div>
-      <form onsubmit="handleAuth(event, 'Registro')" class="space-y-4">
-        <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Nombre o Alias</label>
-          <input type="text" required placeholder="Ej: Chica_Final_99" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
-        </div>
-        <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Correo Electrónico</label>
-          <input type="email" required placeholder="tu@correo.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
-        </div>
-        <div>
-          <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Contraseña</label>
-          <input type="password" required placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
-        </div>
-        <button type="submit" class="btn-slashr-red w-full py-3.5 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider">
-          ENGÁNCHATE A LA CACERÍA
         </button>
       </form>
     </div>
