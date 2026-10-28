@@ -33,13 +33,12 @@
       <div id="progressBar" class="bg-gradient-to-r from-rose-700 to-rose-500 h-full rounded-full w-full transition-all duration-300"></div>
     </div>
 
-    <!-- BOTÓN DIRECTO PARA ENTRAR -->
     <button onclick="hideSplash()" class="btn-slashr-red px-8 py-3 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider shadow-[0_0_20px_rgba(225,29,72,0.5)] active:scale-95 transition-all">
       ENTRAR A HOOKED 🔪
     </button>
   </div>
 
-  <!-- HEADER RETRO -->
+  <!-- HEADER RETRO LIMPIO (Solo botón de audio y logo central) -->
   <header class="w-full max-w-md mx-auto px-4 py-4 flex items-center justify-between z-20">
     <button id="soundToggle" onclick="toggleSound()" class="w-10 h-10 rounded-full border border-rose-900/60 bg-zinc-950/80 flex items-center justify-center text-rose-500 hover:scale-105 active:scale-95 transition-all shadow-[0_0_10px_rgba(225,29,72,0.2)]">
       <span id="soundIcon" class="text-sm">🔊</span>
@@ -47,14 +46,7 @@
     <div class="flex items-center font-creepster text-2xl text-rose-600 text-glow-red tracking-widest">
       <span>HOOKED</span>
     </div>
-    <div class="flex items-center gap-2">
-      <button onclick="openModal('loginModal')" class="w-10 h-10 rounded-full border border-zinc-800 bg-zinc-950/80 flex items-center justify-center text-zinc-400 hover:text-white hover:border-rose-500/50 transition-all">
-        <span class="text-xs">🚪</span>
-      </button>
-      <button onclick="openModal('registerModal')" class="w-10 h-10 rounded-full border border-purple-900/60 bg-purple-950/40 flex items-center justify-center text-purple-400 hover:scale-105 transition-all shadow-[0_0_10px_rgba(168,85,247,0.2)]">
-        <span class="text-xs">👻</span>
-      </button>
-    </div>
+    <div class="w-10"></div> <!-- Espaciador invisible para mantener el logo perfectamente centrado -->
   </header>
 
   <!-- CONTENIDO PRINCIPAL -->
@@ -93,10 +85,9 @@
     </div>
   </main>
 
-  <footer class="w-full max-w-md mx-auto px-6 py-6 flex items-center justify-center gap-8 text-zinc-700 z-20">
-    <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">💀</span>
-    <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">⚡</span>
-    <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">💔</span>
+  <!-- FOOTER LIMPIO -->
+  <footer class="w-full max-w-md mx-auto px-6 py-6 text-center text-[10px] font-mono-tech text-zinc-600 z-20">
+    <p>© 2026 HOOKED • TODOS LOS DERECHOS RESERVADOS</p>
   </footer>
 
   <!-- MODAL INICIAR SESIÓN -->
