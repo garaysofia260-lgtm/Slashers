@@ -1,70 +1,68 @@
-// Web Audio API sintético para efectos en móviles
-let audioCtx = null;
-
-function initAudio() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-}
-
-function playPulseSound() {
-  initAudio();
-  if (!audioCtx) return;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = 'sine';
-  osc.frequency.setValueAtTime(70, audioCtx.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.25);
-  gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.25);
-}
-
-// CARGA DE LA PANTALLA INICIAL (MOBILE)
-const loadingTexts = [
-  "Afilando machetes...",
-  "Cargando combustible...",
-  "Localizando víctimas cercanas...",
-  "Listos para la cacería..."
+// MENSAJES DE CARGA HOOKED
+const statusMessages = [
+  "Afilando el gancho...",
+  "Sintonizando frecuencias de terror...",
+  "Localizando asesinos cercanos...",
+  "Cargando almas de pesadilla..."
 ];
 
 let progress = 0;
 const progressBar = document.getElementById('progressBar');
-const loadingText = document.getElementById('loadingText');
+const loadingStatus = document.getElementById('loadingStatus');
 const splashScreen = document.getElementById('splashScreen');
-const landingScreen = document.getElementById('landingScreen');
 
 const loadingInterval = setInterval(() => {
-  progress += Math.floor(Math.random() * 20) + 15;
+  progress += Math.floor(Math.random() * 20) + 12;
   if (progress > 100) progress = 100;
   
-  progressBar.style.width = progress + '%';
+  if (progressBar) progressBar.style.width = progress + '%';
   
-  const textIndex = Math.min(
-    Math.floor((progress / 100) * loadingTexts.length),
-    loadingTexts.length - 1
-  );
-  loadingText.innerText = loadingTexts[textIndex];
+  const msgIndex = Math.min(Math.floor((progress / 100) * statusMessages.length), statusMessages.length - 1);
+  if (loadingStatus) loadingStatus.innerText = statusMessages[msgIndex];
 
   if (progress >= 100) {
     clearInterval(loadingInterval);
-    setTimeout(finishLoading, 300);
+    setTimeout(() => {
+      splashScreen.classList.add('opacity-0');
+      setTimeout(() => splashScreen.style.display = 'none', 500);
+    }, 400);
   }
-}, 250);
+}, 220);
 
-function finishLoading() {
-  splashScreen.classList.add('fade-out');
-  setTimeout(() => {
-    splashScreen.style.display = 'none';
-    landingScreen.classList.remove('opacity-0');
-  }, 500);
+// EFECTOS Y MODALES
+let audioCtx = null;
+let isMuted = true;
+
+function toggleSound() {
+  const icon = document.getElementById('soundIcon');
+  isMuted = !isMuted;
+  if (!isMuted) {
+    icon.innerText = '🔊';
+    playPulse();
+  } else {
+    icon.innerText = '🔇';
+  }
 }
 
-// GESTIÓN DE MODALES TÁCTILES
+function playPulse() {
+  if (isMuted) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(60, audioCtx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.3);
+  gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.3);
+}
+
 function openModal(modalId) {
+  playPulse();
   document.getElementById(modalId).classList.remove('hidden');
 }
 
@@ -72,14 +70,9 @@ function closeModal(modalId) {
   document.getElementById(modalId).classList.add('hidden');
 }
 
-function switchModal(closeId, openId) {
-  closeModal(closeId);
-  openModal(openId);
-}
-
-function handleAuthSubmit(event, actionName) {
+function handleAuth(event, actionName) {
   event.preventDefault();
-  alert(`¡${actionName} exitoso! Redirigiendo a las citas...`);
+  alert(`¡${actionName} exitoso! Bienvenido a HOOKED.`);
   closeModal('loginModal');
   closeModal('registerModal');
 }
