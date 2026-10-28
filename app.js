@@ -1,4 +1,4 @@
-// Audio Context sintético para efectos de sonido sin librerías externas
+// Web Audio API sintético para efectos en móviles
 let audioCtx = null;
 
 function initAudio() {
@@ -13,22 +13,21 @@ function playPulseSound() {
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
   osc.type = 'sine';
-  osc.frequency.setValueAtTime(60, audioCtx.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.3);
-  gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+  osc.frequency.setValueAtTime(70, audioCtx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.25);
+  gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
   osc.connect(gain);
   gain.connect(audioCtx.destination);
   osc.start();
-  osc.stop(audioCtx.currentTime + 0.3);
+  osc.stop(audioCtx.currentTime + 0.25);
 }
 
-// SIMULACIÓN DE PANTALLA DE CARGA (SPLASH SCREEN)
+// CARGA DE LA PANTALLA INICIAL (MOBILE)
 const loadingTexts = [
   "Afilando machetes...",
-  "Sintonizando frecuencias de radio perturbadoras...",
-  "Cargando combustible a la motosierra...",
-  "Localizando víctimas a menos de 13 metros...",
+  "Cargando combustible...",
+  "Localizando víctimas cercanas...",
   "Listos para la cacería..."
 ];
 
@@ -39,8 +38,7 @@ const splashScreen = document.getElementById('splashScreen');
 const landingScreen = document.getElementById('landingScreen');
 
 const loadingInterval = setInterval(() => {
-  progress += Math.floor(Math.random() * 18) + 12;
-  
+  progress += Math.floor(Math.random() * 20) + 15;
   if (progress > 100) progress = 100;
   
   progressBar.style.width = progress + '%';
@@ -53,19 +51,19 @@ const loadingInterval = setInterval(() => {
 
   if (progress >= 100) {
     clearInterval(loadingInterval);
-    setTimeout(finishLoading, 400);
+    setTimeout(finishLoading, 300);
   }
-}, 300);
+}, 250);
 
 function finishLoading() {
   splashScreen.classList.add('fade-out');
   setTimeout(() => {
     splashScreen.style.display = 'none';
     landingScreen.classList.remove('opacity-0');
-  }, 600);
+  }, 500);
 }
 
-// MANEJO DE MODALES DE AUTENTICACIÓN
+// GESTIÓN DE MODALES TÁCTILES
 function openModal(modalId) {
   document.getElementById(modalId).classList.remove('hidden');
 }
@@ -81,7 +79,7 @@ function switchModal(closeId, openId) {
 
 function handleAuthSubmit(event, actionName) {
   event.preventDefault();
-  alert(`¡${actionName} exitoso! (Aquí conectaremos la vista principal de deslizamiento de perfiles)`);
+  alert(`¡${actionName} exitoso! Redirigiendo a las citas...`);
   closeModal('loginModal');
   closeModal('registerModal');
 }
