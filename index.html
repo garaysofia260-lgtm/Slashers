@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>SLASHR - Encuentra Tu Alma Macabra</title>
+  <title>HOOKED - Citas de Pesadilla</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -13,18 +13,33 @@
   <!-- EFECTO RETRO CRT -->
   <div class="fixed inset-0 crt-lines pointer-events-none z-50"></div>
 
-  <!-- PANTALLA DE CARGA (SPLASH SCREEN) -->
+  <!-- PANTALLA DE CARGA (SPLASH SCREEN CON NUEVO NOMBRE HOOKED) -->
   <div id="splashScreen" class="fixed inset-0 bg-[#050106] z-40 flex flex-col items-center justify-center p-6 text-center select-none transition-opacity duration-500">
     <div class="relative mb-6">
-      <div class="w-24 h-24 rounded-full border border-rose-600/40 bg-rose-950/20 flex items-center justify-center shadow-[0_0_30px_rgba(225,29,72,0.5)]">
+      <div class="w-24 h-24 rounded-full border border-rose-600/50 bg-zinc-950 flex items-center justify-center shadow-[0_0_35px_rgba(225,29,72,0.6)]">
         <span class="text-4xl text-rose-500 animate-pulse">💔</span>
       </div>
     </div>
-    <h1 class="font-creepster text-5xl text-rose-600 text-glow-red tracking-wider mb-2">SLASHR</h1>
-    <p class="font-mono-tech text-xs text-rose-400/70 tracking-widest uppercase mb-6">CARGANDO ALMAS CERCANAS...</p>
-    <div class="w-64 bg-zinc-900 border border-zinc-800 rounded-full h-2 p-0.5 overflow-hidden">
-      <div id="progressBar" class="bg-rose-600 h-full rounded-full w-0 transition-all duration-300"></div>
+
+    <!-- TÍTULO CON FUENTE CREEPSTER Y RESPLANDOR NEÓN -->
+    <div class="flex items-center justify-center gap-2 mb-1">
+      <span class="text-3xl text-rose-600 text-glow-red font-creepster">☠</span>
+      <h1 class="font-creepster text-6xl text-rose-600 text-glow-red tracking-wider">HOOKED</h1>
     </div>
+
+    <!-- SUBTÍTULO A TEMA -->
+    <p class="font-mono-tech text-xs text-rose-400/90 tracking-widest uppercase mb-6 drop-shadow">
+      CITAS DE PESADILLA & EMPAREJAMIENTO MORTAL
+    </p>
+
+    <!-- BARRA DE CARGA Y TEXTO DINÁMICO -->
+    <div class="w-64 bg-zinc-900 border border-zinc-800 rounded-full h-2.5 p-0.5 overflow-hidden shadow-inner mb-3">
+      <div id="progressBar" class="bg-gradient-to-r from-rose-700 to-rose-500 h-full rounded-full w-0 transition-all duration-300"></div>
+    </div>
+    
+    <p id="loadingStatus" class="font-mono-tech text-[11px] text-zinc-500 uppercase tracking-widest">
+      Afilando el gancho...
+    </p>
   </div>
 
   <!-- HEADER RETRO -->
@@ -35,7 +50,7 @@
 
     <div class="flex items-center gap-2 font-creepster text-2xl text-rose-600 text-glow-red tracking-widest">
       <span>☠</span>
-      <span>SLASHR</span>
+      <span>HOOKED</span>
     </div>
 
     <div class="flex items-center gap-2">
@@ -48,10 +63,8 @@
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL (HERO / INICIO) -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="w-full max-w-md mx-auto px-6 py-4 flex-1 flex flex-col items-center justify-center text-center z-10">
-    
-    <!-- CORAZÓN ROTO BRILLANTE -->
     <div class="relative mb-6">
       <div class="absolute -inset-2 bg-rose-600/30 rounded-full blur-xl"></div>
       <div class="relative w-24 h-24 rounded-full border-2 border-rose-600/80 bg-zinc-950 flex items-center justify-center shadow-[0_0_25px_rgba(225,29,72,0.6)]">
@@ -59,31 +72,21 @@
       </div>
     </div>
 
-    <!-- TÍTULO PRINCIPAL -->
     <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 uppercase leading-tight">
-      <span class="block text-zinc-200 tracking-wider font-extrabold font-mono-tech border-b-2 border-transparent">ENCUENTRA TU</span>
+      <span class="block text-zinc-200 tracking-wider font-extrabold font-mono-tech">ENCUENTRA TU</span>
       <span class="block font-creepster text-4xl sm:text-5xl text-rose-600 text-glow-red tracking-widest mt-1">ALMA MACABRA</span>
     </h1>
 
-    <!-- SUBTÍTULO -->
     <p class="text-zinc-400 text-xs sm:text-sm max-w-xs mb-8 leading-relaxed font-light">
-      ¿Cansado de citas normales? Conecta con Jason, Freddy, Ghostface y los asesinos más sangrientos cerca de tu ventana.
+      ¿Cansado de citas normales? Queda enganchado con Jason, Freddy, Ghostface y los asesinos más sangrientos cerca de tu ventana.
     </p>
 
-    <!-- BADGES RECTANGULARES -->
     <div class="flex items-center justify-center gap-2 mb-10 w-full flex-wrap">
-      <span class="px-3 py-1.5 rounded-full border border-rose-900/60 bg-rose-950/30 text-rose-400 text-[11px] font-mono-tech flex items-center gap-1">
-        ⚡ Swipe Sangriento
-      </span>
-      <span class="px-3 py-1.5 rounded-full border border-purple-900/60 bg-purple-950/30 text-purple-300 text-[11px] font-mono-tech flex items-center gap-1">
-        🎰 Matches Reales
-      </span>
-      <span class="px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-[11px] font-mono-tech flex items-center gap-1">
-        💀 +18 Horror
-      </span>
+      <span class="px-3 py-1.5 rounded-full border border-rose-900/60 bg-rose-950/30 text-rose-400 text-[11px] font-mono-tech">⚡ Swipe Sangriento</span>
+      <span class="px-3 py-1.5 rounded-full border border-purple-900/60 bg-purple-950/30 text-purple-300 text-[11px] font-mono-tech">🎰 Matches Reales</span>
+      <span class="px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-[11px] font-mono-tech">💀 +18 Horror</span>
     </div>
 
-    <!-- BOTONES DE ACCIÓN PRINCIPALES -->
     <div class="w-full space-y-3.5 max-w-xs">
       <button onclick="openModal('registerModal')" class="btn-slashr-red w-full py-4 px-6 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95 shadow-[0_0_20px_rgba(225,29,72,0.4)]">
         <span>👤+</span>
@@ -95,17 +98,15 @@
         <span>INICIAR SESIÓN</span>
       </button>
     </div>
-
   </main>
 
-  <!-- NAVEGACIÓN INFERIOR DE ICONOS SUTILES -->
   <footer class="w-full max-w-md mx-auto px-6 py-6 flex items-center justify-center gap-8 text-zinc-700 z-20">
     <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">💀</span>
     <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">⚡</span>
     <span class="text-xl opacity-40 hover:opacity-100 cursor-pointer transition-opacity">💔</span>
   </footer>
 
-  <!-- MODAL DE INICIAR SESIÓN -->
+  <!-- MODALES DE INICIAR SESIÓN Y REGISTRO -->
   <div id="loginModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center hidden">
     <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
       <div class="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 sm:hidden"></div>
@@ -116,7 +117,7 @@
       <form onsubmit="handleAuth(event, 'Inicio de sesión')" class="space-y-4">
         <div>
           <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Correo / Alias</label>
-          <input type="text" required placeholder="tu_victima@slasmail.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
+          <input type="text" required placeholder="tu_victima@hooked.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
         </div>
         <div>
           <label class="block text-[10px] font-mono-tech text-zinc-400 mb-1 uppercase">Contraseña</label>
@@ -129,7 +130,6 @@
     </div>
   </div>
 
-  <!-- MODAL DE REGISTRO -->
   <div id="registerModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center hidden">
     <div class="bg-zinc-950 border-t sm:border border-rose-600/40 rounded-t-3xl sm:rounded-2xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
       <div class="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 sm:hidden"></div>
@@ -151,7 +151,7 @@
           <input type="password" required placeholder="••••••••••••" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-rose-600">
         </div>
         <button type="submit" class="btn-slashr-red w-full py-3.5 rounded-xl font-mono-tech text-xs font-bold text-white uppercase tracking-wider">
-          UNIRSE A LA CACERÍA
+          ENGÁNCHATE A LA CACERÍA
         </button>
       </form>
     </div>
